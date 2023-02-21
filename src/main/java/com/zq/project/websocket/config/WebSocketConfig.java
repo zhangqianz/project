@@ -1,4 +1,4 @@
-package com.zq.project.websocket.conmon;
+package com.zq.project.websocket.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

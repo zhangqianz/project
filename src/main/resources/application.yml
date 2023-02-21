@@ -1,2 +1,27 @@
 server:
   port: 9100
+spring:
+  application:
+    name: basic-project-zq-provider
+  kafka:
+    bootstrap-servers: 172.17.1.58:30083  #多个使用','隔开
+    producer:
+      retries: 3  #重试次数
+      acks: all  #应答级别:多少个分区副本备份完成时向生产者发送ack确认(可选0、1、all/-1)
+      properties:
+        linger:
+          ms: 0  #linger.ms为0表示每接收到一条消息就提交给kafka
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer #序列化方式
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer #序列化方式
+    consumer:
+      group-id: zq  # 消费分组 - id
+
+
+swagger2:
+  title: 张骞-测试
+  version: 0.0.1-SNAPSHOT
+  description: 祸兮福之所倚,福兮祸之所伏
+  contact:
+    name: zq
+    url: www.zq.com
+    email: 1052591242@qq.com
