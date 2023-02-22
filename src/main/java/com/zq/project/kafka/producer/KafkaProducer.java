@@ -25,9 +25,10 @@ public class KafkaProducer {
 
     public boolean sendMessage(String topic,String message){
         try {
-            kafkaTemplate.send(topic, message);
+            kafkaTemplate.send(topic, "data",message);
         }catch (Exception e){
             log.error("kafka推送消息出现异常!"+e.getMessage(),e);
+            return false;
         }
         return true;
     }

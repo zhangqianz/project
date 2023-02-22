@@ -1,7 +1,7 @@
-package com.zq.project.service.impl;
+package com.zq.project.kafka.service.impl;
 
 import com.zq.project.kafka.producer.KafkaProducer;
-import com.zq.project.service.ProjectService;
+import com.zq.project.kafka.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

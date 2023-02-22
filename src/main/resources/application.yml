@@ -4,7 +4,7 @@ spring:
   application:
     name: basic-project-zq-provider
   kafka:
-    bootstrap-servers: 172.17.1.58:30083  #多个使用','隔开
+    bootstrap-servers: 172.17.1.36:30081  #多个使用','隔开
     producer:
       retries: 3  #重试次数
       acks: all  #应答级别:多少个分区副本备份完成时向生产者发送ack确认(可选0、1、all/-1)
@@ -15,6 +15,10 @@ spring:
       value-serializer: org.apache.kafka.common.serialization.StringSerializer #序列化方式
     consumer:
       group-id: zq  # 消费分组 - id
+  redis:
+    database: 0
+    host: 172.17.1.58
+    port: 30079
 
 
 swagger2:

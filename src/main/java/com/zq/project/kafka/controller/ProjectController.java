@@ -1,6 +1,6 @@
-package com.zq.project.controller;
+package com.zq.project.kafka.controller;
 
-import com.zq.project.service.ProjectService;
+import com.zq.project.kafka.service.ProjectService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @description:
  */
 @RestController()
-@RequestMapping("/project")
-@Api(tags = "测试接口")
+@RequestMapping("/kafka")
+@Api(tags = "1.kafka测试接口")
 public class ProjectController {
 
     @Autowired
