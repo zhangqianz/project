@@ -2,6 +2,7 @@ package com.zq.project.kafka.producer;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.admin.KafkaAdminClient;
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
@@ -25,7 +26,8 @@ public class KafkaProducer {
 
     public boolean sendMessage(String topic,String message){
         try {
-            kafkaTemplate.send(topic, "data",message);
+            kafkaTemplate.send(new ProducerRecord<>(topic,message));
+//            kafkaTemplate.send(topic, "data",message);
         }catch (Exception e){
             log.error("kafka推送消息出现异常!"+e.getMessage(),e);
             return false;
