@@ -19,6 +19,24 @@ spring:
     database: 0
     host: 172.17.1.58
     port: 30079
+  #jackson配置
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss #日期格式化
+    time-zone: GMT+8
+    # 序列化相关
+    serialization:
+      indent_output: true #化输出
+    deserialization:
+      fail_on_unknown_properties: false #反序列化时对象没有json对应的属性忽略
+    #    defaultPropertyInclusion: NON_EMPTY #如何序列化
+    parser:
+      allow_unquoted_control_chars: true #允许特殊和转义符
+      allow_single_quotes: true #允许单引号
+  elasticsearch:
+    rest:
+      uris: http://172.17.1.43:9200
+      username: elastic
+      password: hurricane
 
 
 swagger2:
