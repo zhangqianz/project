@@ -1,0 +1,2 @@
+com.zq.project.base.spi.FileSpiServiceImpl
+com.zq.project.base.spi.DatabaseSpiServiceImpl
