@@ -1,10 +1,10 @@
 server:
-  port: 9100
+  port: 9200
 spring:
   application:
     name: basic-project-zq-provider
   kafka:
-    bootstrap-servers: 172.17.1.36:30081  #多个使用','隔开
+    bootstrap-servers: 172.17.1.36:30092  #多个使用','隔开
     producer:
       retries: 3  #重试次数
       acks: all  #应答级别:多少个分区副本备份完成时向生产者发送ack确认(可选0、1、all/-1)
