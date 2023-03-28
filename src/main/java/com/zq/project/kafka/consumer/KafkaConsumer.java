@@ -14,8 +14,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class KafkaConsumer {
 
-//    @KafkaListener(topics = "zq-test")
-    public void kafkaListenser(ConsumerRecord<?, ?> record){
+    @KafkaListener(topics = "connect_source_kafka_stream_data")
+    public void kafkaSourceListenser(ConsumerRecord<?, ?> record){
+        System.out.println("监听到消息========"+record.value().toString());
+    }
+
+    @KafkaListener(topics = "connect_sink_kafka_stream_data")
+    public void kafkaSinkListenser(ConsumerRecord<?, ?> record){
         System.out.println("监听到消息========"+record.value().toString());
     }
 }

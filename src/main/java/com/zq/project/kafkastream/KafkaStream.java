@@ -1,16 +1,13 @@
 package com.zq.project.kafkastream;
 
-import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.*;
-import org.apache.kafka.streams.kstream.KStream;
-import org.springframework.context.ApplicationListener;
-import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.util.Properties;
-import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * @author zhangqian
@@ -19,19 +16,19 @@ import java.util.concurrent.atomic.AtomicReference;
  */
 @Component
 @Slf4j
-public class KafkaStream implements ApplicationListener<ContextRefreshedEvent> {
+public class KafkaStream {
 
-    @Override
-    public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        AtomicReference<String> originMessage = new AtomicReference<>();
+    private KafkaStreams kafkaStreams;
+
+    @PostConstruct
+    public void onApplicationEvent() {
         try {
             StreamsBuilder streamsBuilder=new StreamsBuilder();
             streamsBuilder.stream("connect_source_kafka_stream_data").map((k,v) -> {
-                originMessage.set(String.valueOf(v));
                 return new KeyValue<Object,String>(k,v+"123456");
             }).to("connect_sink_kafka_stream_data");
             Topology build = streamsBuilder.build();
-            KafkaStreams kafkaStreams=new KafkaStreams(build,getProperties());
+            kafkaStreams=new KafkaStreams(build,getProperties());
             kafkaStreams.start();
         } catch (Exception e) {
             log.error("kafka-stream转换出现异常!"+e.getMessage(),e);
@@ -45,5 +42,12 @@ public class KafkaStream implements ApplicationListener<ContextRefreshedEvent> {
         properties.setProperty(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
         properties.setProperty(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
         return properties;
+    }
+
+    @PreDestroy
+    private void destroy(){
+        if (kafkaStreams!=null){
+            kafkaStreams.close();
+        }
     }
 }
