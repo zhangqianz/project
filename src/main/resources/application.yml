@@ -3,6 +3,21 @@ server:
 spring:
   application:
     name: basic-project-zq-provider
+  datasource:
+    dynamic:
+      p6spy: true
+      datasource:
+        master:
+          username: root
+          password: www123456
+          url: jdbc:mysql://127.0.0.1:3306/ceshi?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+          driver-class-name: com.mysql.cj.jdbc.Driver
+#通过p6spy打印日志配置
+#        slave:
+#          username: root
+#          password: www123456
+#          url: jdbc:p6spy:mysql://127.0.0.1:3306/ceshi?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+#          driver-class-name: com.p6spy.engine.spy.P6SpyDriver
   kafka:
     bootstrap-servers: 172.17.1.36:30092  #多个使用','隔开
     producer:
@@ -40,6 +55,15 @@ spring:
   servlet:
     multipart:
       max-file-size: 104857600  #100m
+
+#mybatis-plus:
+#  mapper-locations: classpath*:com/supconit/its/itp/**/**/mapper/*Mapper.xml
+#  type-aliases-package: com.supconit.its.itp.information.**.dto.*
+#  global-config:
+#    db-config:
+#      id-type: auto
+#      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+#      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
 
 
 

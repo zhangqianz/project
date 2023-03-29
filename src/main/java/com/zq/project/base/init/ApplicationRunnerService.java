@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  * 例如@PostConstruct、CommandLineRunner、ApplicationRunner、ApplicationListener都可以实现在springboot启动后执行我们特定的逻辑，接下来对比他们的区别
  * https://blog.csdn.net/nlcexiyue/article/details/129443600
  */
-@Component
+//@Component
 @Slf4j
 public class ApplicationRunnerService implements ApplicationRunner {
 
