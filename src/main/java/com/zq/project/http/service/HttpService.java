@@ -2,6 +2,8 @@ package com.zq.project.http.service;
 
 import com.alibaba.fastjson.JSON;
 import com.zq.project.http.domian.bo.HttpBo;
+import com.zq.project.http.domian.bo.UmsBo;
+import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  * @author zhangqian
@@ -16,4 +18,12 @@ public interface HttpService {
      * @return
      */
     JSON getHttpResult(HttpBo httpBo);
+
+
+    /**
+     *
+     * @param umsBo
+     * @return
+     */
+    JSON sendUms(UmsBo umsBo);
 }

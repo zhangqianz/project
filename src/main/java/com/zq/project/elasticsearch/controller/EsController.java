@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.spring.web.json.Json;
 
+import java.io.IOException;
+
 /**
  * @author zhangqian
  * @date 2023/2/27 14:02
@@ -38,5 +40,15 @@ public class EsController {
     @ApiOperation(value = "es查询")
     private JSON query(@RequestParam String name){
         return esService.query(name);
+    }
+
+    @PostMapping("/search")
+    @ApiOperation(value = "es查询")
+    private void search(){
+        try {
+            esService.search();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

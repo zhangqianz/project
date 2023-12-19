@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSON;
 import org.apache.kafka.common.protocol.types.Field;
 import springfox.documentation.spring.web.json.Json;
 
+import java.io.IOException;
+
 /**
  * @author zhangqian
  * @date 2023/2/27 14:02
@@ -32,6 +34,9 @@ public interface EsService {
      * @return
      */
     JSON query(String name);
+
+
+    void search() throws IOException;
 
 
 }

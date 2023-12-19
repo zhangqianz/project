@@ -8,6 +8,7 @@ import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
+import java.io.IOException;
 
 /**
  * @author zhangqian
@@ -20,8 +21,10 @@ import javax.websocket.server.ServerEndpoint;
 public class WebSocketServer {
 
     @OnOpen
-    public void onOpen(Session session){
+    public void onOpen(Session session) throws IOException {
         log.info("客户端：{}连接成功",session.getId());
+        //返回给客户端
+        session.getBasicRemote().sendText(session.getId());
     }
 
     @OnClose

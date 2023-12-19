@@ -2,6 +2,7 @@ package com.zq.project.http.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.zq.project.http.domian.bo.HttpBo;
+import com.zq.project.http.domian.bo.UmsBo;
 import com.zq.project.http.service.HttpService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -25,5 +26,11 @@ public class HttpController {
     @ApiOperation(value = "http测试")
     private JSON getHttpResultByPost(@RequestBody HttpBo httpBo){
         return httpService.getHttpResult(httpBo);
+    }
+
+    @PostMapping("/sendUms")
+    @ApiOperation(value = "发送短信")
+    private JSON sendUms(@RequestBody UmsBo umsBo){
+        return httpService.sendUms(umsBo);
     }
 }
